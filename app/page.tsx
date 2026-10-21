@@ -94,8 +94,115 @@ export default function Page() {
 
     <section id="faq" className="section bg-[#f5f7fa]"><div className="container max-w-4xl"><div className="section-heading"><p className="eyebrow">Jawaban yang Anda cari</p><h2>Pertanyaan yang Sering <em>Diajukan</em></h2></div><div className="faq-list">{faqs.map(([question, answer]) => <details key={question}><summary>{question}<ChevronDown /></summary><p>{answer}</p></details>)}</div></div></section>
 
-    <section id="kontak" className="contact-section"><div className="container grid gap-12 lg:grid-cols-[.85fr_1.15fr]"><div><p className="eyebrow gold">Hubungi kami</p><h2>Siap Mengurus Administrasi Kendaraan Anda?</h2><p className="mt-5 text-lg leading-relaxed text-white/70">Hubungi Amanah Lintas Nusantara untuk mendiskusikan kebutuhan pengurusan kendaraan Anda.</p><div className="contact-details"><a href={phoneLink}><Phone /> <span><small>Telepon</small>021-39726229</span></a><a href={whatsappLink}><MessageCircle /> <span><small>WhatsApp</small>0817300961</span></a></div></div><form onSubmit={submitConsultation} className="consult-form"><div className="grid gap-4 sm:grid-cols-2"><label>Nama lengkap<input name="name" required placeholder="Nama Anda" /></label><label>Nomor WhatsApp<input name="phone" required type="tel" placeholder="08xx-xxxx-xxxx" /></label></div><label>Jenis layanan yang dibutuhkan<select name="service" required defaultValue=""><option value="" disabled>Pilih layanan</option>{services.map(s => <option key={s.title}>{s.title}</option>)}</select></label><label>Jenis atau merek kendaraan <span>(opsional)</span><input name="vehicle" placeholder="Contoh: Toyota Avanza 2020" /></label><label>Pesan tambahan <span>(opsional)</span><textarea name="notes" rows={3} placeholder="Ceritakan kebutuhan Anda secara singkat" /></label><button className="button button-gold w-full" type="submit">{sent ? 'Pesan siap dikirim via WhatsApp' : 'Lanjutkan ke WhatsApp'} <ArrowRight data-icon="inline-end" /></button><p className="text-center text-xs text-slate-500">Setelah terbuka, tekan tombol kirim di WhatsApp untuk mengirim pesan.</p></form></div></section>
+    <section id="kontak" className="contact-section">
+  <div className="container grid gap-12 lg:grid-cols-[.85fr_1.15fr]">
+    <div>
+      <p className="eyebrow gold">Hubungi kami</p>
+      <h2>Siap Mengurus Administrasi Kendaraan Anda?</h2>
+      <p className="mt-5 text-lg leading-relaxed text-white/70">
+        Hubungi Amanah Lintas Nusantara untuk mendiskusikan kebutuhan pengurusan kendaraan Anda.
+      </p>
+      <div className="contact-details">
+        <a href={phoneLink}>
+          <Phone />
+          <span>
+            <small>Telepon</small>
+            021-39726229
+          </span>
+        </a>
+        <a href={whatsappLink}>
+          <MessageCircle />
+          <span>
+            <small>WhatsApp</small>
+            0817300961
+          </span>
+        </a>
+      </div>
+    </div>
 
-    <footer><div className="container grid gap-10 py-12 md:grid-cols-[1.5fr_1fr_1fr]"><div><Logo /><p className="mt-5 max-w-sm text-sm leading-relaxed text-slate-500">Biro jasa dan konsultan pengurusan administrasi kendaraan bermotor untuk kebutuhan pribadi maupun perusahaan.</p></div><div><h3>Jelajahi</h3><div className="footer-links"><a href="#layanan">Layanan</a><a href="#tentang">Tentang Kami</a><a href="#alur">Alur Pengurusan</a><a href="#faq">Pertanyaan Umum</a></div></div><div><h3>Hubungi</h3><div className="footer-links"><a href={phoneLink}>021-39726229</a><a href={whatsappLink}>0817300961</a><a href="#kontak">Konsultasi Sekarang</a></div></div></div><div className="container border-t border-slate-200 py-5 text-xs leading-relaxed text-slate-500">© {new Date().getFullYear()} CV. Amanah Lintas Nusantara. Penyedia jasa swasta; biaya resmi, prosedur, dan persyaratan administrasi mengikuti ketentuan yang berlaku.</div></footer>
-  </main>
+    <form onSubmit={submitConsultation} className="consult-form">
+      <div className="grid gap-4 sm:grid-cols-2">
+        <label>
+          Nama lengkap
+          <input name="name" required placeholder="Nama Anda" />
+        </label>
+        <label>
+          Nomor WhatsApp
+          <input name="phone" required type="tel" placeholder="08xx-xxxx-xxxx" />
+        </label>
+      </div>
+
+      <label>
+        Jenis layanan yang dibutuhkan
+        <select name="service" required defaultValue="">
+          <option value="" disabled>Pilih layanan</option>
+          {services.map(s => <option key={s.title}>{s.title}</option>)}
+        </select>
+      </label>
+
+      <label>
+        Jenis atau merek kendaraan <span>(opsional)</span>
+        <input name="vehicle" placeholder="Contoh: Toyota Avanza 2020" />
+      </label>
+
+      <label>
+        Pesan tambahan <span>(opsional)</span>
+        <textarea name="notes" rows={3} placeholder="Ceritakan kebutuhan Anda secara singkat" />
+      </label>
+
+      <button className="button button-gold w-full" type="submit">
+        {sent ? 'Pesan siap dikirim via WhatsApp' : 'Lanjutkan ke WhatsApp'}
+        <ArrowRight data-icon="inline-end" />
+      </button>
+      <p className="text-center text-xs text-slate-500">
+        Setelah terbuka, tekan tombol kirim di WhatsApp untuk mengirim pesan.
+      </p>
+    </form>
+  </div>
+
+  <div className="container mt-12">
+    <div className="overflow-hidden rounded-2xl border border-white/10">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.8231712206452!2d106.84888937515062!3d-6.286959961537406!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3ff9eca4875%3A0xdf2005c513277c4d!2sBiro%20Jasa%20CV.%20Amanah%20Lintas%20Nusantara!5e0!3m2!1sen!2sid!4v1792601797419!5m2!1sen!2sid"
+        title="Lokasi CV. Amanah Lintas Nusantara"
+        className="h-[300px] w-full border-0 md:h-[380px]"
+        allowFullScreen
+        loading="lazy"
+        referrerPolicy="strict-origin-when-cross-origin"
+      />
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div className="container grid gap-10 py-12 md:grid-cols-[1.5fr_1fr_1fr]">
+    <div>
+      <Logo />
+      <p className="mt-5 max-w-sm text-sm leading-relaxed text-slate-500">
+        Biro jasa dan konsultan pengurusan administrasi kendaraan bermotor untuk kebutuhan pribadi maupun perusahaan.
+      </p>
+    </div>
+    <div>
+      <h3>Jelajahi</h3>
+      <div className="footer-links">
+        <a href="#layanan">Layanan</a>
+        <a href="#tentang">Tentang Kami</a>
+        <a href="#alur">Alur Pengurusan</a>
+        <a href="#faq">Pertanyaan Umum</a>
+      </div>
+    </div>
+    <div>
+      <h3>Hubungi</h3>
+      <div className="footer-links">
+        <a href={phoneLink}>021-39726229</a>
+        <a href={whatsappLink}>0817300961</a>
+        <a href="#kontak">Konsultasi Sekarang</a>
+      </div>
+    </div>
+  </div>
+
+  <div className="container border-t border-slate-200 py-5 text-xs leading-relaxed text-slate-500">
+    © {new Date().getFullYear()} CV. Amanah Lintas Nusantara. Penyedia jasa swasta; biaya resmi, prosedur, dan persyaratan administrasi mengikuti ketentuan yang berlaku.
+  </div>
+</footer>  </main>
 }
